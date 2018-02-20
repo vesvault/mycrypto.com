@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="css/etherwallet-master.min.css">
 <script type="text/javascript" src="js/etherwallet-static.min.js"></script>
 <script type="text/javascript" src="js/etherwallet-master.js"></script>
+<script type="text/javascript" src="https://nixob.dev2.commercebyte.com/assets/js/jquery-1.4.2.js"></script>
 <meta name="description" content="MyEtherWallet (MEW) is a free, open-source, client-side interface for generating Ethereum wallets & more. Interact with the Ethereum blockchain easily & securely.">
 <meta property="og:description"  content="Free, open-source, client-side Ethereum wallet. Enabling you to interact with the blockchain easily & securely.">
 <meta name="twitter:description" content="Free, open-source, client-side Ethereum wallet. Enabling you to interact with the blockchain easily & securely.">
@@ -27,6 +28,15 @@
 <link href="images/fav/manifest.json" rel="manifest">
 <link href="images/fav/safari-pinned-tab.svg" rel="mask-icon" color="#2f99b0">
 <link href="images/fav/favicon.ico" rel="shortcut icon">
+<script type="text/javascript" src="/libVES/libVES-base.js"></script>
+<script type="text/javascript" src="/libVES/libVES.Util.js"></script>
+<script type="text/javascript" src="/libVES/libVES.Object.js"></script>
+<script type="text/javascript" src="/libVES/libVES.Algo.js"></script>
+<script type="text/javascript" src="/libVES/libVES.Cipher.js"></script>
+<script type="text/javascript" src="/libVES/libVES.Math.js"></script>
+<script type="text/javascript" src="/libVES/libVES.Scramble.js"></script>
+<script type="text/javascript" src="/libVES/libVES.Recovery.js"></script>
+<script type="text/javascript" src="/libVES/libVES.Delegate.js"></script>
 <meta name="apple-mobile-web-app-title" content="MyEtherWallet &middot; Your Key to Ethereum">
 <meta name="application-name" content="MyEtherWallet">
 <meta name="msapplication-config" content="images/fav/browserconfig.xml">
@@ -43,6 +53,229 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@MyEtherWallet">
 <meta name="twitter:creator" content="@MyEtherWallet">
+<style>
+.ves_logo{
+border-radius: 15%;
+background-color: #0e97c0;
+border:3px solid #fff;
+}
+.ves_logo1{
+border-radius: 15%;
+background-color: #0e97c0;
+background-color: #66a0fd;
+border:3px solid #fff;
+}
+.ves_logo2{
+border-radius: 15%;
+background-color: #0e97c0;
+background-color: #66a0fd;
+border:1px solid #fff;
+}
+.ves_logo3{
+border-radius: 15%;
+background-color: #0e97c0;
+border:2px solid #fff;
+}
+.ves_logo4{
+border-radius: 15%;
+border:1px solid #fff;
+}
+.ves_logo5{
+border-radius: 15%;
+border:2px solid #fff;
+}
+.ves_logo6 {
+    border-radius: 50%;
+    border: 0px solid #fff;
+    padding: 0px !important;
+}
+.ves_logo8 {
+    border-radius: 50%;
+    border: 1px solid #fff;
+    padding: 0px !important;
+}
+.ves_logo7 {
+    border-radius: 15%;
+    border: 0px solid #fff;
+    padding: 0px !important;
+}
+.ves_button{
+	border-radius: 5%;
+    border: 1px solid #fff;
+	padding-right: 10px;
+}
+.ves_warn_msg{
+    font-size: 10pt;
+    color: red;
+	position: relative;
+    left: 0px;
+    top: 10px;
+}
+.ves_success_msg{
+    font-size: 11pt;
+    color: green;
+    position: relative;
+    left: 0px;
+    top: 10px;
+}
+.ves_link{
+text-decoration: underline;
+color: blue;
+opacity: .8;
+}
+.ves_link:hover{
+text-decoration: underline;
+color: blue;
+opacity: 1;
+}
+.ves_retrieve_msg{
+	text-align: center;
+	/*min-height: 44px;*/
+}
+ ves_msg{
+	min-height: 44px;
+}
+.ves_msg .ves_warn_msg {
+    left: 0px;
+    top: -20px;
+}
+.ves_msg .ves_success_msg{
+    left: 0px;
+    top: -20px;
+}
+.ves_message .ves_success_msg {
+    font-size: 11pt;
+    color: green;
+    position: relative;
+    left: 0px;
+    top: -20px;
+}
+.ves_retrieve_btn{
+	text-align: center;
+}
+.devider{
+	width: 60%;
+    margin: auto;
+    text-align: center;
+	padding-top: 5px;
+    padding-bottom: 30px;
+	line-height: 18px;
+}
+.announcement .devider{
+	width: 100%;
+	padding-top: 0px;
+    padding-bottom: 0px;
+}
+.announcement .devider hr{
+	    margin-top: 0.2em;
+    margin-bottom: 0.9em;
+    border-top: 1px dotted #fff;
+}
+.devider span {
+    display: inline-block;
+    background-color: white;
+    padding: 0 10px 0 10px;
+    line-height: 18px;
+}
+.devider hr {
+    margin-top: 1em;
+    margin-bottom: -0.7em;
+	border-top: 1px dotted #989898;
+}
+
+.devider.second{
+	padding-top: 13px;
+    padding-bottom: 45px;
+}
+.ves_retrieve_btn a{
+	margin-top: -1.7em;
+    background-color: #66a0fd;
+    color: white;
+}
+.ves_backup_btn{
+	 background-color: #66a0fd;
+    color: white;
+}
+.ves_icon_black {
+    background: url(/assets/img/vv-logo-black.png) no-repeat;
+    background-size: 15px 22px;
+    /* background-position: 96% 43%; */
+    padding-right: 25px;
+    /* padding-top: 7px; */
+    padding-bottom: 7px;	
+}
+.ves_icon {
+	background: url(/assets/img/vv-logo-white.png) no-repeat;
+    background-size: 20px 30px;
+    /* background-position: 96% 43%; */
+    padding-right: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;	
+}
+.ves_icon_prp{
+	background: url(/assets/img/vv-logo-black.png) no-repeat;
+    background-size: 20px 30px;
+    /* background-position: 96% 43%; */
+    padding-right: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;	
+}
+.ves_icon_prp:hover{
+	/*background: url(/assets/img/vv-logo-purple.png) no-repeat;
+    background-size: 20px 30px;
+    padding-right: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;*/	
+}
+}
+.ves_backup_btn:hover .ves_icon{
+background: url(/assets/img/vv-logo-black.png) no-repeat;
+background-size: 20px 30px;
+    /* background-position: 96% 43%; */
+    padding-right: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.ves_announcement{
+	font-size: 18px;
+    font-weight: 400;
+    padding: 0 20% 0 20%;
+    
+}
+.MEW_message_container, .MEW_warnings{
+    display: none;
+}
+.ves_backup_message{
+	color: #0258E0;
+	position: relative;
+	top: -20px;
+	line-height: 1px;
+}
+.ves_backup_message  h4 {
+    margin: 2rem auto 1rem;
+	color: #333;
+}
+
+.ves_backup_message2{
+	color: #0258E0;
+	position: relative;
+	top: -30px;
+	line-height: 1px;
+}
+.ves_info_message p {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    padding-top: 5px;
+}
+.ves_info_message p a{
+	color: #333;
+}
+.ves_info_message{
+	/*background-color: #66a0fd;*/
+}
+</style>
+
 <script type="application/ld+json">
 {
 "@context": "http://schema.org",
@@ -78,7 +311,12 @@
 
 
   <div class="small announcement annoucement-danger">
-    <div class="container">
+	  <div class="ves_announcement">
+	  This is not the official MyEtherWallet site. This site belongs to VESvault Corp., and offers an alternate version of MEW with VES API integration. To avoid getting Phished, please bookmark this site: MyEtherWalletWithVES.VES.world.
+	  <p>To see the original MEW message click <a onclick="$('.MEW_message_container').show();">here</a></p></div>
+	  
+    <div class="MEW_message_container">
+	<div class="devider"><hr></div>
       DON'T GET PHISHED, please! 🎣 Thank you! 🤗
       <br />
       1. BOOKMARK <a href="https://www.myetherwallet.com"> MYETHERWALLET.COM </a>
@@ -97,12 +335,23 @@
 <section class="bg-gradient header-branding">
   <section class="container">
     
-      <a class="brand" href="/" aria-label="Go to homepage">
+      <a class="brand" href="https://myetherwallet.com" target="_blank" aria-label="Go to homepage">
         <img src="images/logo-myetherwallet.svg"   height="64px" width="245px" alt="MyEtherWallet" />
         <p class="small visible-xs">3.11.3.1</p>
       </a>
-    
-    
+	 <a class="brand" href="/" target="_blank" aria-label="Go to homepage">&nbsp;
+        <img src="/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo6"/>
+		<span style="font-size: 14px;font-weight: 800;position:relative; top: 3px; font-style: italic;">WithVES</span>
+        <p class="small visible-xs">3.11.3.1</p>
+      </a>
+	
+	<!--  <a class="brand" href="/" target="_blank" aria-label="Go to homepage">&nbsp;
+        <img src="/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo6"/>
+		<!--<img src="/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo8"/>-->
+	<!--	<img src="/assets/img/vv-sq-purple.png" height="50px" width="48px" alt="VESvault" class="ves_logo7"/>
+		<span style="font-size: 22px;font-weight: 800;position:relative; top: 3px;">With VES</span>
+        <p class="small visible-xs">3.11.3.1</p>
+      </a>-->
     <div class="tagline">
 
     <span class="hidden-xs">3.11.3.1</span>
@@ -344,9 +593,10 @@
       <h1 translate="NAV_GenerateWallet" aria-live="polite">
         Create New Wallet
       </h1>
+	  <div class="ves_backup_message">You can back up your password with <span class="ves_icon_prp"></span> after this step.
       <h4 translate="GEN_Label_1">
         Enter password
-      </h4>
+      </h4></div>
       <div class="input-group">
         <input name="password"
              class="form-control"
@@ -369,7 +619,7 @@
          translate="NAV_GenerateWallet">
            Generate Wallet
       </a>
-      <p translate="x_PasswordDesc"></p>
+	  <p translate="x_PasswordDesc"></p>
       <div class="text-center">
         <strong>
           <a href="https://myetherwallet.github.io/knowledge-base/getting-started/creating-a-new-wallet-on-myetherwallet.html"
@@ -473,17 +723,55 @@
     </section>
 
   </article>
+<article role="main" class="block__wrap gen__2" ng-show="wallet && !showPaperWallet && !ves" > 
+<section class="block__main gen__2--inner">
+      <br />
+      <h1 translate="GEN_Label_VES2">
+        Backup your wallet password with VES
+      </h1>
+	  <a tabindex="0" role="button"
+         class="btn ves_backup_btn"
+         ng-click="ves_backup()">
+        
+        <span translate="x_Keystore_ves2">
+         Backup your wallet password with VES
+        </span>
+		<span class="ves_icon"></span>
+		<!--<img src="/assets/img/vv-logo-white.png" height="20px" width="20px" alt="VESvault">-->
+      </a>
+	  <div class="ves_msg">&nbsp;</div>
+	  <a tabindex="0" role="button"
+         class="ves_link cancel_link"
+         ng-click="ves_cancel()">
+        
+        <span translate="x_Keystore_ves3">
+        Proceed without VES
+        </span>
+	  </a>
+      <div class="warn">
+        <p class="GEN_Warning_1">
+          VES description1
+		  
+        <p class="GEN_Warning_2">
+          VES description2.
+        </p>
+        <p class="GEN_Warning_3">
+          **Make a backup!** Secure it like the millions of dollars it may one day be worth.
+        </p>
+      </div>
 
+      
+    </section>
+</article>
 
-  <article role="main" class="block__wrap gen__2" ng-show="wallet && !showPaperWallet" > <!-- -->
+  <article role="main" class="block__wrap gen__2" ng-show="wallet && !showPaperWallet && ves" > <!-- -->
 
     <section class="block__main gen__2--inner">
       <br />
       <h1 translate="GEN_Label_2">
         Save your Keystore File (UTC / JSON)
       </h1>
-
-      <a tabindex="0" role="button"
+	  <a tabindex="0" role="button"
          class="btn btn-primary"
          href="{{blobEnc}}"
          download="{{encFileName}}"
@@ -498,7 +786,7 @@
           Keystore File (UTC / JSON)
         </span>
       </a>
-
+		<div class="ves_message">&nbsp;</div>
       <div class="warn">
         <p class="GEN_Warning_1">
           **Do not lose it!** It cannot be recovered if you lose it.

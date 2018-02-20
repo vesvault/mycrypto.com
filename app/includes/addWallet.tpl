@@ -115,11 +115,18 @@
           <p translate="ADD_Label_3">
             Your file is encrypted. Please enter the password:
           </p>
-          <input class="form-control"
+          <input class="form-control test"
                  type="password"
                  placeholder="{{'x_Password' | translate }}"
                  ng-model="filePassword"
                  ng-change="onFilePassChange()" />
+		<a tabindex="0" role="button"
+          class="btn btn-primary"
+          ng-click="ves_retrieve()">
+          <span translate="add_retrieve_ves">
+            Retrieve your wallet password with VES
+          </span>
+        </a>
         </div>
 
       </section>
