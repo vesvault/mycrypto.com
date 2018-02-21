@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="css/etherwallet-master.min.css">
 <script type="text/javascript" src="js/etherwallet-static.min.js"></script>
 <script type="text/javascript" src="js/etherwallet-master.js"></script>
-<script type="text/javascript" src="https://nixob.dev2.commercebyte.com/assets/js/jquery-1.4.2.js"></script>
 <meta name="description" content="MyEtherWallet (MEW) is a free, open-source, client-side interface for generating Ethereum wallets & more. Interact with the Ethereum blockchain easily & securely.">
 <meta property="og:description"  content="Free, open-source, client-side Ethereum wallet. Enabling you to interact with the blockchain easily & securely.">
 <meta name="twitter:description" content="Free, open-source, client-side Ethereum wallet. Enabling you to interact with the blockchain easily & securely.">
@@ -28,15 +27,7 @@
 <link href="images/fav/manifest.json" rel="manifest">
 <link href="images/fav/safari-pinned-tab.svg" rel="mask-icon" color="#2f99b0">
 <link href="images/fav/favicon.ico" rel="shortcut icon">
-<script type="text/javascript" src="/libVES/libVES-base.js"></script>
-<script type="text/javascript" src="/libVES/libVES.Util.js"></script>
-<script type="text/javascript" src="/libVES/libVES.Object.js"></script>
-<script type="text/javascript" src="/libVES/libVES.Algo.js"></script>
-<script type="text/javascript" src="/libVES/libVES.Cipher.js"></script>
-<script type="text/javascript" src="/libVES/libVES.Math.js"></script>
-<script type="text/javascript" src="/libVES/libVES.Scramble.js"></script>
-<script type="text/javascript" src="/libVES/libVES.Recovery.js"></script>
-<script type="text/javascript" src="/libVES/libVES.Delegate.js"></script>
+<script type="text/javascript" src="/libVES/libVES-0.89a.js"></script>
 <meta name="apple-mobile-web-app-title" content="MyEtherWallet &middot; Your Key to Ethereum">
 <meta name="application-name" content="MyEtherWallet">
 <meta name="msapplication-config" content="images/fav/browserconfig.xml">
@@ -302,6 +293,23 @@ background-size: 20px 30px;
   "https://github.com/MyEtherWallet",
   "https://kvhnuke.github.io/etherwallet/","https://myetherwallet.slack.com/"
 ]
+}
+</script>
+<script type="text/javascript">
+function MEW_libVES() {
+    var app = "MyEtherWallet";
+    var domain = "cryptoWallets";
+    libVES.Domain[domain] = {
+	vaultRefToUser: function(vaultRef,VES) {
+	    return vaultRef.externalId;
+	},
+	userToVaultRef: function(user, VES) {
+	    return user.getEmail().then(function(email) {
+		return {domain: domain, externalId: email};
+	    });
+	}
+    };
+    return new libVES({app:app,domain:domain,apiUrl:'/api/v1/'});
 }
 </script>
 </head>
@@ -739,7 +747,10 @@ background-size: 20px 30px;
 		<span class="ves_icon"></span>
 		<!--<img src="/assets/img/vv-logo-white.png" height="20px" width="20px" alt="VESvault">-->
       </a>
-	  <div class="ves_msg">&nbsp;</div>
+	  <div class="ves_msg">
+	    <span ng-if="ves_status=='loading'">Loading...</span>
+	    <span ng-if="ves_status=='error'">Error...</span>
+	  </div>
 	  <a tabindex="0" role="button"
          class="ves_link cancel_link"
          ng-click="ves_cancel()">
