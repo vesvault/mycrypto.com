@@ -70,6 +70,7 @@
 ]
 }
 </script>
+@@include( '../includes/libVES.tpl')
 </head>
 <body>
 
@@ -77,6 +78,14 @@
 
 @@if (site === 'mew' ) {
   <div class="small announcement annoucement-danger">
+  @@if (walletVesWorld) {
+    <div class="ves_announcement">
+      This is not the official MyEtherWallet site. This site belongs to VESvault Corp., and offers an alternate version of MEW with VES API integration. To avoid getting Phished, please bookmark this site: <a href="https://wallet.ves.world">wallet.ves.world</a>.
+      <p>To see the original MEW message click <a onclick="$('.MEW_message_container').show();">here</a></p>
+    </div>
+    <div class="MEW_message_container">
+      <div class="ves_divider"><hr></div>
+  }
     <div class="container">
       DON'T GET PHISHED, please! 🎣 Thank you! 🤗
       <br />
@@ -90,7 +99,16 @@
         <a href="https://chrome.google.com/webstore/detail/cryptonite-by-metacert/keghdcpemohlojlglbiegihkljkgnige" target="_blank" rel="noopener noreferrer">Cryptonite</a>
       </span>
     </div>
+  @@if (walletVesWorld) {
+    </div>
+  }
   </div>
+  @@if (walletVesWorld) {
+  <div class="ves_links">
+    <span><a href="/assets/download/VES-Wallet-Marketing.pdf" target="_blank">Download</a> MyEtherWalletWithVES overview</span>
+    <span>See source code at <a href="https://github.com/vesvault" target="_blank">GitHub</a></span>
+  </div>
+  }
 }
 
 <section class="bg-gradient header-branding">
@@ -100,16 +118,31 @@
         <img src="images/logo-myetherwallet.svg"   height="64px" width="245px" alt="MyEtherWallet" />
         <p class="small visible-xs">3.11.3.1</p>
       </a>
+      @@if (walletVesWorld) {
+      <a class="brand" href="https://www.vesvault.com" target="_blank" aria-label="Go to homepage">&nbsp;
+        <img src="https://www.vesvault.com/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo6"/>
+        <span style="font-size: 14px;font-weight: 800;position:relative; top: 3px; font-style: italic;">WithVES</span>
+      </a>
+      }
     }
     @@if (site === 'cx'  ) {
       <a class="brand" href="/cx-wallet.html" aria-label="Go to homepage">
         <img src="images/logo-myetherwalletcx.svg" height="64px" width="245px" alt="MyEtherWallet" />
         <p class="small visible-xs">3.11.3.1</p>
       </a>
+      @@if (walletVesWorld) {
+      <a class="brand" href="https://www.vesvault.com" target="_blank" aria-label="Go to homepage">&nbsp;
+        <img src="https://www.vesvault.com/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo6"/>
+        <span style="font-size: 14px;font-weight: 800;position:relative; top: 3px; font-style: italic;">WithVES</span>
+      </a>
+      }
     }
     <div class="tagline">
 
     <span class="hidden-xs">3.11.3.1</span>
+    @@if (walletVesWorld) {
+    <span class="hidden-xs">-VES</span>
+    }
 
     <span class="dropdown dropdown-lang" ng-cloak>
       <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle  btn btn-white" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
