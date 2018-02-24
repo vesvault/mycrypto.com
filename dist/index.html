@@ -27,7 +27,6 @@
 <link href="images/fav/manifest.json" rel="manifest">
 <link href="images/fav/safari-pinned-tab.svg" rel="mask-icon" color="#2f99b0">
 <link href="images/fav/favicon.ico" rel="shortcut icon">
-<script type="text/javascript" src="/libVES/libVES-0.89a.js"></script>
 <meta name="apple-mobile-web-app-title" content="MyEtherWallet &middot; Your Key to Ethereum">
 <meta name="application-name" content="MyEtherWallet">
 <meta name="msapplication-config" content="images/fav/browserconfig.xml">
@@ -44,229 +43,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@MyEtherWallet">
 <meta name="twitter:creator" content="@MyEtherWallet">
-<style>
-.ves_logo{
-border-radius: 15%;
-background-color: #0e97c0;
-border:3px solid #fff;
-}
-.ves_logo1{
-border-radius: 15%;
-background-color: #0e97c0;
-background-color: #66a0fd;
-border:3px solid #fff;
-}
-.ves_logo2{
-border-radius: 15%;
-background-color: #0e97c0;
-background-color: #66a0fd;
-border:1px solid #fff;
-}
-.ves_logo3{
-border-radius: 15%;
-background-color: #0e97c0;
-border:2px solid #fff;
-}
-.ves_logo4{
-border-radius: 15%;
-border:1px solid #fff;
-}
-.ves_logo5{
-border-radius: 15%;
-border:2px solid #fff;
-}
-.ves_logo6 {
-    border-radius: 50%;
-    border: 0px solid #fff;
-    padding: 0px !important;
-}
-.ves_logo8 {
-    border-radius: 50%;
-    border: 1px solid #fff;
-    padding: 0px !important;
-}
-.ves_logo7 {
-    border-radius: 15%;
-    border: 0px solid #fff;
-    padding: 0px !important;
-}
-.ves_button{
-	border-radius: 5%;
-    border: 1px solid #fff;
-	padding-right: 10px;
-}
-.ves_warn_msg{
-    font-size: 10pt;
-    color: red;
-	position: relative;
-    left: 0px;
-    top: 10px;
-}
-.ves_success_msg{
-    font-size: 11pt;
-    color: green;
-    position: relative;
-    left: 0px;
-    top: 10px;
-}
-.ves_link{
-text-decoration: underline;
-color: blue;
-opacity: .8;
-}
-.ves_link:hover{
-text-decoration: underline;
-color: blue;
-opacity: 1;
-}
-.ves_retrieve_msg{
-	text-align: center;
-	/*min-height: 44px;*/
-}
- ves_msg{
-	min-height: 44px;
-}
-.ves_msg .ves_warn_msg {
-    left: 0px;
-    top: -20px;
-}
-.ves_msg .ves_success_msg{
-    left: 0px;
-    top: -20px;
-}
-.ves_message .ves_success_msg {
-    font-size: 11pt;
-    color: green;
-    position: relative;
-    left: 0px;
-    top: -20px;
-}
-.ves_retrieve_btn{
-	text-align: center;
-}
-.devider{
-	width: 60%;
-    margin: auto;
-    text-align: center;
-	padding-top: 5px;
-    padding-bottom: 30px;
-	line-height: 18px;
-}
-.announcement .devider{
-	width: 100%;
-	padding-top: 0px;
-    padding-bottom: 0px;
-}
-.announcement .devider hr{
-	    margin-top: 0.2em;
-    margin-bottom: 0.9em;
-    border-top: 1px dotted #fff;
-}
-.devider span {
-    display: inline-block;
-    background-color: white;
-    padding: 0 10px 0 10px;
-    line-height: 18px;
-}
-.devider hr {
-    margin-top: 1em;
-    margin-bottom: -0.7em;
-	border-top: 1px dotted #989898;
-}
-
-.devider.second{
-	padding-top: 13px;
-    padding-bottom: 45px;
-}
-.ves_retrieve_btn a{
-	margin-top: -1.7em;
-    background-color: #66a0fd;
-    color: white;
-}
-.ves_backup_btn{
-	 background-color: #66a0fd;
-    color: white;
-}
-.ves_icon_black {
-    background: url(/assets/img/vv-logo-black.png) no-repeat;
-    background-size: 15px 22px;
-    /* background-position: 96% 43%; */
-    padding-right: 25px;
-    /* padding-top: 7px; */
-    padding-bottom: 7px;	
-}
-.ves_icon {
-	background: url(/assets/img/vv-logo-white.png) no-repeat;
-    background-size: 20px 30px;
-    /* background-position: 96% 43%; */
-    padding-right: 25px;
-    padding-top: 7px;
-    padding-bottom: 7px;	
-}
-.ves_icon_prp{
-	background: url(/assets/img/vv-logo-black.png) no-repeat;
-    background-size: 20px 30px;
-    /* background-position: 96% 43%; */
-    padding-right: 25px;
-    padding-top: 7px;
-    padding-bottom: 7px;	
-}
-.ves_icon_prp:hover{
-	/*background: url(/assets/img/vv-logo-purple.png) no-repeat;
-    background-size: 20px 30px;
-    padding-right: 25px;
-    padding-top: 7px;
-    padding-bottom: 7px;*/	
-}
-}
-.ves_backup_btn:hover .ves_icon{
-background: url(/assets/img/vv-logo-black.png) no-repeat;
-background-size: 20px 30px;
-    /* background-position: 96% 43%; */
-    padding-right: 25px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-}
-.ves_announcement{
-	font-size: 18px;
-    font-weight: 400;
-    padding: 0 20% 0 20%;
-    
-}
-.MEW_message_container, .MEW_warnings{
-    display: none;
-}
-.ves_backup_message{
-	color: #0258E0;
-	position: relative;
-	top: -20px;
-	line-height: 1px;
-}
-.ves_backup_message  h4 {
-    margin: 2rem auto 1rem;
-	color: #333;
-}
-
-.ves_backup_message2{
-	color: #0258E0;
-	position: relative;
-	top: -30px;
-	line-height: 1px;
-}
-.ves_info_message p {
-    font-size: 16px;
-    font-weight: 400;
-    font-style: italic;
-    padding-top: 5px;
-}
-.ves_info_message p a{
-	color: #333;
-}
-.ves_info_message{
-	/*background-color: #66a0fd;*/
-}
-</style>
-
 <script type="application/ld+json">
 {
 "@context": "http://schema.org",
@@ -295,6 +71,7 @@ background-size: 20px 30px;
 ]
 }
 </script>
+<script type="text/javascript" src="/libVES/libVES-0.89a.js"></script>
 <script type="text/javascript">
 function MEW_libVES() {
     var app = "MyEtherWallet";
@@ -309,9 +86,10 @@ function MEW_libVES() {
 	    });
 	}
     };
-    return new libVES({app:app,domain:domain,apiUrl:'/api/v1/'});
+    return new libVES({app:app,domain:domain,apiUrl:'/api/v1/',wwwUrl:'/'});
 }
 </script>
+
 </head>
 <body>
 
@@ -319,12 +97,7 @@ function MEW_libVES() {
 
 
   <div class="small announcement annoucement-danger">
-	  <div class="ves_announcement">
-	  This is not the official MyEtherWallet site. This site belongs to VESvault Corp., and offers an alternate version of MEW with VES API integration. To avoid getting Phished, please bookmark this site: MyEtherWalletWithVES.VES.world.
-	  <p>To see the original MEW message click <a onclick="$('.MEW_message_container').show();">here</a></p></div>
-	  
-    <div class="MEW_message_container">
-	<div class="devider"><hr></div>
+    <div class="container">
       DON'T GET PHISHED, please! 🎣 Thank you! 🤗
       <br />
       1. BOOKMARK <a href="https://www.myetherwallet.com"> MYETHERWALLET.COM </a>
@@ -343,23 +116,12 @@ function MEW_libVES() {
 <section class="bg-gradient header-branding">
   <section class="container">
     
-      <a class="brand" href="https://myetherwallet.com" target="_blank" aria-label="Go to homepage">
+      <a class="brand" href="/" aria-label="Go to homepage">
         <img src="images/logo-myetherwallet.svg"   height="64px" width="245px" alt="MyEtherWallet" />
         <p class="small visible-xs">3.11.3.1</p>
       </a>
-	 <a class="brand" href="/" target="_blank" aria-label="Go to homepage">&nbsp;
-        <img src="/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo6"/>
-		<span style="font-size: 14px;font-weight: 800;position:relative; top: 3px; font-style: italic;">WithVES</span>
-        <p class="small visible-xs">3.11.3.1</p>
-      </a>
-	
-	<!--  <a class="brand" href="/" target="_blank" aria-label="Go to homepage">&nbsp;
-        <img src="/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo6"/>
-		<!--<img src="/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo8"/>-->
-	<!--	<img src="/assets/img/vv-sq-purple.png" height="50px" width="48px" alt="VESvault" class="ves_logo7"/>
-		<span style="font-size: 22px;font-weight: 800;position:relative; top: 3px;">With VES</span>
-        <p class="small visible-xs">3.11.3.1</p>
-      </a>-->
+    
+    
     <div class="tagline">
 
     <span class="hidden-xs">3.11.3.1</span>
@@ -601,10 +363,14 @@ function MEW_libVES() {
       <h1 translate="NAV_GenerateWallet" aria-live="polite">
         Create New Wallet
       </h1>
-	  <div class="ves_backup_message">You can back up your password with <span class="ves_icon_prp"></span> after this step.
+      <div class="ves_backup_message">
+        <span translate="x_VES_Generate1">Choose a strong, hard to guess password for your new wallet.<br/>You can back up your password with</span>
+        <a href="https://www.vesvault.com" target="_blank" class="ves_icon_prp" title="VESvault"></a>
+        <span translate="x_VES_Generate2">after this step.</span>
+      </div>
       <h4 translate="GEN_Label_1">
         Enter password
-      </h4></div>
+      </h4>
       <div class="input-group">
         <input name="password"
              class="form-control"
@@ -627,7 +393,7 @@ function MEW_libVES() {
          translate="NAV_GenerateWallet">
            Generate Wallet
       </a>
-	  <p translate="x_PasswordDesc"></p>
+      <p translate="x_PasswordDesc"></p>
       <div class="text-center">
         <strong>
           <a href="https://myetherwallet.github.io/knowledge-base/getting-started/creating-a-new-wallet-on-myetherwallet.html"
@@ -731,46 +497,41 @@ function MEW_libVES() {
     </section>
 
   </article>
-<article role="main" class="block__wrap gen__2" ng-show="wallet && !showPaperWallet && !ves" > 
+
+<article role="main" class="block__wrap gen__2" ng-show="wallet && !showPaperWallet && !ves" > <!-- -->
 <section class="block__main gen__2--inner">
       <br />
-      <h1 translate="GEN_Label_VES2">
+      <h1 translate="x_VES_Label2">
         Backup your wallet password with VES
       </h1>
-	  <a tabindex="0" role="button"
+      <a tabindex="0" role="button"
          class="btn ves_backup_btn"
          ng-click="ves_backup()">
         
-        <span translate="x_Keystore_ves2">
+        <span translate="x_VES_Keystore2">
          Backup your wallet password with VES
         </span>
-		<span class="ves_icon"></span>
-		<!--<img src="/assets/img/vv-logo-white.png" height="20px" width="20px" alt="VESvault">-->
+        <span class="ves_icon"></span>
       </a>
-	  <div class="ves_msg">
-	    <span ng-if="ves_status=='loading'">Loading...</span>
-	    <span ng-if="ves_status=='error'">Error...</span>
-	  </div>
-	  <a tabindex="0" role="button"
-         class="ves_link cancel_link"
+      <div class="ves_msg">
+        <span class="ves_loading_msg" ng-show="ves_status=='starting'" translate="x_VES_starting">Connecting to VES...</span>
+        <span class="ves_loading_msg" ng-show="ves_status=='loading'" translate="x_VES_backup_loading">Backing up your wallet password with VES...</span>
+        <span class="ves_success_msg" ng-show="ves_status=='ok'" translate="x_VES_backup_ok">Your wallet password has been backed up with VES.</span>
+        <span class="ves_warn_msg" ng-show="ves_status=='error'" ng-bind="ves_error_msg"></span>
+      </div>
+      <div class="ves_info_links">
+        <a href="https://www.vesvault.com" target="_blank" translate="x_VES_link_vesvault">Visit VESvault to learn more</a> &nbsp; &nbsp; &nbsp;
+        <a href="https://wallet.ves.world/assets/download/VES-Wallet-Marketing.pdf" target="_blank" translate="x_VES_link_download">Download MyEtherWalletWithVES overview</a><br/><br/>
+      </div>
+      <a tabindex="0" role="button"
+         class="ves_link ves_cancel_link"
          ng-click="ves_cancel()">
         
-        <span translate="x_Keystore_ves3">
+        <span translate="x_VES_Keystore3">
         Proceed without VES
         </span>
-	  </a>
-      <div class="warn">
-        <p class="GEN_Warning_1">
-          VES description1
-		  
-        <p class="GEN_Warning_2">
-          VES description2.
-        </p>
-        <p class="GEN_Warning_3">
-          **Make a backup!** Secure it like the millions of dollars it may one day be worth.
-        </p>
-      </div>
-
+      </a>
+      <div class="ves_cancel_msg" translate="x_VES_Keystore4">(you'll be able to back up the password with VES the next time you unlock your wallet)</div>
       
     </section>
 </article>
@@ -782,7 +543,8 @@ function MEW_libVES() {
       <h1 translate="GEN_Label_2">
         Save your Keystore File (UTC / JSON)
       </h1>
-	  <a tabindex="0" role="button"
+
+      <a tabindex="0" role="button"
          class="btn btn-primary"
          href="{{blobEnc}}"
          download="{{encFileName}}"
@@ -797,7 +559,11 @@ function MEW_libVES() {
           Keystore File (UTC / JSON)
         </span>
       </a>
-		<div class="ves_message">&nbsp;</div>
+
+      <div class="ves_message">
+	<span class="ves_success_msg" ng-show="ves_status=='ok'" translate="x_VES_backup_ok">Your wallet password has been backed up with VES.</span>
+      </div>
+
       <div class="warn">
         <p class="GEN_Warning_1">
           **Do not lose it!** It cannot be recovered if you lose it.

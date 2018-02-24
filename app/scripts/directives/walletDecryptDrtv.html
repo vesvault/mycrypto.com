@@ -74,11 +74,12 @@
            class="radio">
       <input aria-flowto="aria6"
              aria-label="Keystore JSON file"
-                            type="radio"
+             type="radio"
              ng-model="walletType"
              value="fileupload" />
       Keystore / JSON File
-<a href="https://wallet.ves.world" target="_blank"style="color: #333;">with <span class="ves_icon_black"></span></a>      <a href="https://myetherwallet.github.io/knowledge-base/private-keys-passwords/difference-beween-private-key-and-keystore-file.html"
+      <a href="https://www.vesvault.com" target="_blank" style="color: #333;">with <span class="ves_icon_black"></span></a>
+      <a href="https://myetherwallet.github.io/knowledge-base/private-keys-passwords/difference-beween-private-key-and-keystore-file.html"
          target="_blank"
          rel="noopener noreferrer">
         <img src="images/icon-help-3.svg" width="16px" height="16px" style="margin: 0 5px 5px">
@@ -432,7 +433,7 @@
     <!-- Keystore -->
     <div ng-if="walletType=='fileupload'">
       <h4 translate="ADD_Radio_2_alt">Select your wallet file</h4>
-   <div class="ves_info_message">Due to phishing, the makers of MEW do not recommend Keystore as the means of access your wallet.  We, VESvault Corp., understand the reasoning behind this advice, but respectfully disagree. As long as you only visit this site from a saved and verified bookmark and check the URL & SSL cert with each visit, you should be safe from visiting a phishing site. <br>The URL and SSL cert. should say https://www.myetherwalletwithves.ves.world & VESvault Corp.<p>To see the original message from MEW click <a ng-click="showHideWarningMsg()">here</a>.</p> </div>   <div ng-show="mewwrnVisible" class="form-group"> <h5>
+   <div class="ves_info_message">Due to phishing, the makers of MEW do not recommend Keystore as the means of access your wallet.  We, VESvault Corp., understand the reasoning behind this advice, but respectfully disagree. As long as you only visit this site from a saved and verified bookmark and check the URL & SSL cert with each visit, you should be safe from visiting a phishing site. <br>The URL and SSL cert. should say https://wallet.ves.world & VESvault Corp.<p>To see the original message from MEW click <a ng-click="ves_showHideWarningMsg()">here</a>.</p> </div>   <div ng-show="mewwrnVisible" class="form-group"> <h5>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="#d9534f" d="M256 0C114.844 0 0 114.844 0 256s114.844 256 256 256 256-114.844 256-256S397.156 0 256 0zm102.625 313.375c12.5 12.492 12.5 32.758 0 45.25C352.383 364.875 344.188 368 336 368s-16.383-3.125-22.625-9.375L256 301.25l-57.375 57.375C192.383 364.875 184.188 368 176 368s-16.383-3.125-22.625-9.375c-12.5-12.492-12.5-32.758 0-45.25L210.75 256l-57.375-57.375c-12.5-12.492-12.5-32.758 0-45.25 12.484-12.5 32.766-12.5 45.25 0L256 210.75l57.375-57.375c12.484-12.5 32.766-12.5 45.25 0 12.5 12.492 12.5 32.758 0 45.25L301.25 256l57.375 57.375z"/></svg>
         This is <u>not</u> a recommended way to access your wallet.
       </h5>
@@ -487,7 +488,7 @@
                ng-model="$parent.$parent.filePassword"
                placeholder="{{ 'x_Password' | translate }}"
                type="{{vespswdVisible ? 'text' : 'password'}}" />
-         <span tabindex="0" aria-label="make password visible" role="button" class="input-group-addon eye" ng-click="showHidePswd()"></span>
+         <span tabindex="0" aria-label="make password visible" role="button" class="input-group-addon eye" ng-click="ves_showHidePswd()"></span>
         </div>
         <div class="ves_retrieve_box">
          <div ng-show="ves_exists">
@@ -501,6 +502,7 @@
            <span class="ves_icon"></span></a>
           </div>
           <div class="ves_retrieve_msg">
+           <span class="ves_loading_msg" ng-show="ves_status=='starting'" translate="x_VES_starting">Connecting to VES...</span>
            <span class="ves_loading_msg" ng-show="ves_status=='loading'" translate="x_VES_retrieve_loading">Retrieving your wallet password with VES...</span>
            <span class="ves_success_msg" ng-show="ves_status=='ok'" translate="x_VES_retrieve_ok">Your wallet password was successfully retrieved with VES.</span>
            <span class="ves_warn_msg" ng-show="ves_status=='error_retrieve'" translate="x_VES_retrieve_error">Your wallet password could not be retrieved with VES.</span>
@@ -509,9 +511,10 @@
          </div>
          <div class="ves_retrieve_info" ng-show="ves_exists==false">
           <div class="ves_divider"><hr></div>
-          <span translate="x_VES_retrieve2">The password for this wallet is not backed up with VES yet.</span><br/>
-          <label><input type="checkbox" class="ves_backup_chkbx" /> <span translate="x_VES_retrieve3">Back it up when unlocking the wallet</span></label>
+          <span translate="x_VES_retrieve2">The password for this wallet is not yet backed up with VES.</span><br/>
+          <label><input type="checkbox" class="ves_backup_chkbx" /> <a href="https://www.vesvault.com" target="_blank" class="ves_icon_prp" title="VESvault"></a> <span translate="x_VES_retrieve3">Back it up when unlocking the wallet</span></label>
           <div class="ves_retrieve_msg">
+           <span class="ves_loading_msg" ng-show="ves_status=='starting'" translate="x_VES_starting">Connecting to VES...</span>
            <span class="ves_loading_msg" ng-show="ves_status=='loading'" translate="x_VES_backup_loading">Backing up your wallet password with VES...</span>
            <span class="ves_success_msg" ng-show="ves_status=='ok'" translate="x_VES_backup_ok">Your wallet password has been successfully backed up with VES.</span>
            <span class="ves_warn_msg" ng-show="ves_status=='error'" ng-bind="ves_error_msg"></span>
@@ -694,7 +697,7 @@
             Retrieve your wallet password with VES
           </span>
         </a>
-  </div>
+      </div>
       <div class="form-group">
         <a tabindex="0"
            role="button"

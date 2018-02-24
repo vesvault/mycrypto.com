@@ -244,6 +244,10 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
         $scope.wallet.type = "default";
     }
     $scope.decryptWallet = function() {
+        switch ($scope.ves_status) {
+            case 'starting': case 'loading': if ($scope.ves_exists != null) return; break;
+            case 'ok': if ($scope.ves_wallet) return $scope.ves_backupDone();
+        }
         $scope.wallet = null;
         try {
             if ($scope.showPDecrypt && $scope.requirePPass) {
@@ -262,7 +266,7 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
                 $scope.notifier.info(globalFuncs.successMsgs[1]);
                 try{
                     if ($scope.ves_exists || !document.getElementsByClassName('ves_backup_chkbx')[0].checked) throw null;
-                    $scope.ves_status = null;
+                    $scope.ves_status = 'starting';
                     return MEW_libVES().delegate().then(function(myVES) {
                         $scope.ves_status = 'loading';
                         $scope.$apply();
@@ -298,6 +302,7 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
         $scope.wallet = $scope.ves_wallet;
         $scope.wallet.type = "default";
         walletService.wallet = $scope.wallet;
+        $scope.$apply();
     };
     $scope.decryptAddressOnly = function() {
         if ($scope.Validator.isValidAddress($scope.addressOnly)) {
@@ -395,39 +400,33 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
           $scope.wallet.type = "default";
         });
     };
-
-    $scope.showHidePswd = function () {
+    $scope.ves_showHidePswd = function () {
         $scope.vespswdVisible = !$scope.vespswdVisible;
     };
-    $scope.showHideWarningMsg = function () {
+    $scope.ves_showHideWarningMsg = function () {
         $scope.mewwrnVisible = !$scope.mewwrnpswdVisible;
-		console.log('$scope.mewwrnVisible2' ,$scope.mewwrnVisible);
     };
     $scope.ves_retrieve = function () {
-		$scope.ves_status = null;
-		MEW_libVES().delegate().then(function(myVES) {
-			$scope.ves_status = 'loading';
-			myVES.getValue({"domain":myVES.domain,"externalId":$scope.ves_extId}).then(function(value) {
-				console.log('getValue: ', value);
-				$scope.ves_status = 'ok';
-				var fld = document.getElementsByClassName('ves_retrieve')[0];
-				fld.value = value;
-				angular.element(fld).triggerHandler('input');
-//				$scope.onFilePassChange();
-				$scope.$apply();
-			}).catch(function(error) {
-				$scope.ves_status = 'error_retrieve';
-				$scope.$apply();
-			})
-		
-		}).catch(function(error) {
-			$scope.ves_status = 'error';
-			$scope.ves_error_msg = error.message;
-			$scope.$apply();
-			
-		})
+        $scope.ves_status = 'starting';
+        MEW_libVES().delegate().then(function(myVES) {
+            $scope.ves_status = 'loading';
+            $scope.$apply();
+            myVES.getValue({"domain":myVES.domain,"externalId":$scope.ves_extId}).then(function(value) {
+                $scope.ves_status = 'ok';
+                var fld = document.getElementsByClassName('ves_retrieve')[0];
+                fld.value = value;
+                angular.element(fld).triggerHandler('input');
+                $scope.$apply();
+            }).catch(function(error) {
+                $scope.ves_status = 'error_retrieve';
+                $scope.$apply();
+            })
+        }).catch(function(error) {
+            $scope.ves_status = 'error';
+            $scope.ves_error_msg = error.message;
+            $scope.$apply();
+        })
     };
-
     // helper function that removes 0x prefix from strings
     function fixPkey(key) {
         if (key.indexOf('0x') === 0) {

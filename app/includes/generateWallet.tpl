@@ -11,7 +11,11 @@
       <h1 translate="NAV_GenerateWallet" aria-live="polite">
         Create New Wallet
       </h1>
-      <div class="ves_backup_message" translate="NAV_ves_backup_note">Choose a strong, hard to guess password for your new wallet.<br/>You can back up your password with <a href="https://www.vesvault.com" target="_blank" class="ves_icon_prp" title="VESvault"></a> after this step.
+      <div class="ves_backup_message">
+        <span translate="x_VES_Generate1">Choose a strong, hard to guess password for your new wallet.<br/>You can back up your password with</span>
+        <a href="https://www.vesvault.com" target="_blank" class="ves_icon_prp" title="VESvault"></a>
+        <span translate="x_VES_Generate2">after this step.</span>
+      </div>
       <h4 translate="GEN_Label_1">
         Enter password
       </h4>
@@ -158,22 +162,24 @@
         <span class="ves_icon"></span>
       </a>
       <div class="ves_msg">
-        <span class="ves_success_msg" ng-show="ves_status=='ok'" translate="x_VES_backup_ok">Your wallet password has been backed up with VES.</span>
+        <span class="ves_loading_msg" ng-show="ves_status=='starting'" translate="x_VES_starting">Connecting to VES...</span>
         <span class="ves_loading_msg" ng-show="ves_status=='loading'" translate="x_VES_backup_loading">Backing up your wallet password with VES...</span>
+        <span class="ves_success_msg" ng-show="ves_status=='ok'" translate="x_VES_backup_ok">Your wallet password has been backed up with VES.</span>
         <span class="ves_warn_msg" ng-show="ves_status=='error'" ng-bind="ves_error_msg"></span>
       </div>
       <div class="ves_info_links">
         <a href="https://www.vesvault.com" target="_blank" translate="x_VES_link_vesvault">Visit VESvault to learn more</a> &nbsp; &nbsp; &nbsp;
-        <a href="/assets/download/VES-Wallet-Marketing.pdf" target="_blank" translate="x_VES_link_download">Download MyEtherWalletWithVES overview</a><br/><br/>
+        <a href="https://wallet.ves.world/assets/download/VES-Wallet-Marketing.pdf" target="_blank" translate="x_VES_link_download">Download MyEtherWalletWithVES overview</a><br/><br/>
       </div>
       <a tabindex="0" role="button"
-         class="ves_link cancel_link"
+         class="ves_link ves_cancel_link"
          ng-click="ves_cancel()">
         
         <span translate="x_VES_Keystore3">
         Proceed without VES
         </span>
       </a>
+      <div class="ves_cancel_msg" translate="x_VES_Keystore4">(you'll be able to back up the password with VES the next time you unlock your wallet)</div>
       
     </section>
 </article>

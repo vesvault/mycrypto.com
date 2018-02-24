@@ -48,32 +48,39 @@ var walletGenCtrl = function($scope) {
     }
     $scope.ves = false;
     $scope.ves_backup = function () {
-	$scope.ves_status = null;
-	MEW_libVES().delegate().then(function(myVES) {
-		$scope.ves_status = 'loading';
-		$scope.$apply();
-		return myVES.putValue({"domain":myVES.domain,"externalId":$scope.ves_extId},$scope.password).then(function(vi) {
-			$scope.ves_status = 'ok';
-			$scope.$apply();
-			window.setTimeout(function() {
-			    $scope.ves = true;
-			    $scope.$apply();
-			},2000);
-		});
-	}).catch(function(error) {
-		$scope.ves = false;
-		$scope.ves_error_msg = error.message;
-		$scope.ves_status = 'error';
-		$scope.$apply();
-	});
+        switch ($scope.ves_status) {
+            case 'starting': case 'loading': return;
+            case 'ok': $scope.ves = true; return;
+        }
+        $scope.ves_status = 'starting';
+        MEW_libVES().delegate().then(function(myVES) {
+            $scope.ves_status = 'loading';
+            $scope.$apply();
+            return myVES.putValue({"domain":myVES.domain,"externalId":$scope.ves_extId},$scope.password).then(function(vi) {
+                $scope.ves_status = 'ok';
+                $scope.$apply();
+                window.setTimeout(function() {
+                    $scope.ves = true;
+                    $scope.$apply();
+                },2000);
+            });
+        }).catch(function(error) {
+            $scope.ves = false;
+            $scope.ves_error_msg = error.message;
+            $scope.ves_status = 'error';
+            $scope.$apply();
+        });
+    };
+    $scope.ves_cancel = function() {
+        $scope.ves = true;
     };
     $scope.continueToPaper = function() {
         $scope.showPaperWallet = true;
-    }
+    };
     $scope.getAddress = function(){
         $scope.showPaperWallet = false;
         $scope.wallet = null;
         $scope.showGetAddress = true;
-    }
+    };
 };
 module.exports = walletGenCtrl;

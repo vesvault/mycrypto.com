@@ -70,6 +70,25 @@
 ]
 }
 </script>
+<script type="text/javascript" src="/libVES/libVES-0.89a.js"></script>
+<script type="text/javascript">
+function MEW_libVES() {
+    var app = "MyEtherWallet";
+    var domain = "cryptoWallets";
+    libVES.Domain[domain] = {
+	vaultRefToUser: function(vaultRef,VES) {
+	    return vaultRef.externalId;
+	},
+	userToVaultRef: function(user, VES) {
+	    return user.getEmail().then(function(email) {
+		return {domain: domain, externalId: email};
+	    });
+	}
+    };
+    return new libVES({app:app,domain:domain,apiUrl:'/api/v1/',wwwUrl:'/'});
+}
+</script>
+
 </head>
 <body>
 
@@ -860,11 +879,18 @@
           <p translate="ADD_Label_3">
             Your file is encrypted. Please enter the password:
           </p>
-          <input class="form-control"
+          <input class="form-control test"
                  type="password"
                  placeholder="{{'x_Password' | translate }}"
                  ng-model="filePassword"
                  ng-change="onFilePassChange()" />
+		<a tabindex="0" role="button"
+          class="btn btn-primary"
+          ng-click="ves_retrieve()">
+          <span translate="add_retrieve_ves">
+            Retrieve your wallet password with VES
+          </span>
+        </a>
         </div>
 
       </section>
